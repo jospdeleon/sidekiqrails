@@ -30,3 +30,7 @@ end
 
 gem 'redis'
 gem 'sidekiq'
+
+gem "newrelic_rpm", "~> 9.5"
+
+gem 'sidekiq-prometheus-exporter', '~> 0.1'

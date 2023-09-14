@@ -104,6 +104,7 @@ GEM
       timeout
     net-smtp (0.3.3)
       net-protocol
+    newrelic_rpm (9.5.0)
     nio4r (2.5.9)
     nokogiri (1.15.4-x86_64-darwin)
       racc (~> 1.4)
@@ -158,6 +159,9 @@ GEM
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
       redis-client (>= 0.14.0)
+    sidekiq-prometheus-exporter (0.2.0)
+      rack (>= 1.6.0)
+      sidekiq (>= 4.1.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -180,11 +184,13 @@ PLATFORMS
 
 DEPENDENCIES
   debug
+  newrelic_rpm (~> 9.5)
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.1)
   redis
   sidekiq
+  sidekiq-prometheus-exporter (~> 0.1)
   sprockets-rails
   tzinfo-data
 

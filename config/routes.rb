@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   get "other/job_done"
 
   root to: "welcome#index"
+
+  require 'sidekiq/prometheus/exporter'
+  mount Sidekiq::Prometheus::Exporter => '/metrics'
 end
