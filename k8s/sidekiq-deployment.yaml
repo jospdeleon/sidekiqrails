@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.30.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: sidekiq
+  name: sidekiq
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: sidekiq
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.30.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/sidekiqrails-default: "true"
+        io.kompose.service: sidekiq
+    spec:
+      containers:
+        - command:
+            - ./entrypoints/sidekiq-entrypoint.sh
+          env:
+            - name: DATABASE_HOST
+              value: C02XD2USJG5M
+            - name: DATABASE_NAME
+              value: sidekiqrails_development
+            - name: DATABASE_PASSWORD
+              value: shark
+            - name: DATABASE_USER
+              value: postgres
+            - name: RAILS_ENV
+              value: development
+            - name: REDIS_HOST
+              value: C02XD2USJG5M
+            - name: REDIS_PORT
+              value: "6379"
+          image: sidekiqrails_sidekiq:latest
+          imagePullPolicy: IfNotPresent
+          name: sidekiq
+          resources: {}
+      restartPolicy: Always
+status: {}
