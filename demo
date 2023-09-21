@@ -1,0 +1,43 @@
+#prerequisites
+
+$> ruby -v  
+ruby 3.1.0p0 // you need at least version 3 here  
+$> bundle -v  
+Bundler version 2.2.11  
+$> npm -v  
+8.3.0 // you need at least version 7.1 here  
+$> yarn -v  
+1.22.10
+$> psql --version  
+psql (PostgreSQL) 13.1 // let's use a production-ready database locally  
+$> redis-cli ping // redis is a dependency of Sidekiq
+PONG
+$> foreman -v
+0.87.2
+
+#first setup
+mkdir sidekiqrails && cd sidekiqrails  
+echo "source 'https://rubygems.org'" > Gemfile  
+echo "gem 'rails', '7.0.1'" >> Gemfile  
+bundle install  
+bundle exec rails new . --force -d=postgresql --minimal
+
+# Create a default controller
+echo "class WelcomeController < ApplicationController" > app/controllers/welcome_controller.rb
+echo "end" >> app/controllers/welcome_controller.rb
+
+# Create a default route
+echo "Rails.application.routes.draw do" > config/routes.rb
+echo '  get "welcome/index"' >> config/routes.rb
+echo '  root to: "welcome#index"' >> config/routes.rb
+echo 'end' >> config/routes.rb
+
+# Create a default view
+mkdir app/views/welcome
+echo '<h1>This is h1 title</h1>' > app/views/welcome/index.html.erb
+
+
+# Create database and schema.rb
+bin/rails db:create
+bin/rails db:migrate
+
