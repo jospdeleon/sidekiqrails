@@ -1,6 +1,6 @@
 # inside config/sidekiq.yml
 development:
-  :concurrency: 5
+  :concurrency: 2
 
 production:
   :concurrency: 10
@@ -9,3 +9,4 @@ production:
 
 :queues:
   - default
+  - [critical, 2]
