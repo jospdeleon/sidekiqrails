@@ -90,7 +90,7 @@ common: &default_settings
 
   # If true, enables an audit log which logs communications with the New Relic
   # collector.
-  # audit_log.enabled: false
+  audit_log.enabled: true
 
   # List of allowed endpoints to include in audit log.
   # audit_log.endpoints: [".*"]
