@@ -13,7 +13,7 @@ spec:
       containers:
       - name: main
         command: ["rails"]
-        args: ["db:create", "db:migrate"]
+        args: ["db:create"]
         env:
           - name: DATABASE_HOST
             value: C02XD2USJG5M
