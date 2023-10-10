@@ -13,21 +13,14 @@ services:
     volumes:
       - .:/app
       - gem_cache:/usr/local/bundle/gems
-    # env_file: .env
+    env_file: .env
     environment:
       RAILS_ENV: development
-      DATABASE_NAME: sidekiqrails_development
-      DATABASE_USER: postgres
-      DATABASE_PASSWORD: shark
-      DATABASE_HOST: database
-      REDIS_HOST: redis
     labels:
       kompose.service.type: LoadBalancer
 
   database:
     image: postgres:15.4
-    environment:
-      POSTGRES_PASSWORD: shark
     volumes:
       - db_data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -44,7 +37,7 @@ services:
     ports: 
       - "9292:9292"
     environment:
-      REDIS_URL: redis://C02XD2USJG5M:6379/0
+      REDIS_HOST: ${REDIS_HOST}
 
   sidekiq:
     build:
@@ -57,14 +50,9 @@ services:
     volumes:
       - .:/app
       - gem_cache:/usr/local/bundle/gems
-    # env_file: .env
+    env_file: .env
     environment:
       RAILS_ENV: development
-      DATABASE_NAME: sidekiqrails_development
-      DATABASE_USER: postgres
-      DATABASE_PASSWORD: shark
-      DATABASE_HOST: database
-      REDIS_HOST: redis
     entrypoint: ./entrypoints/sidekiq-entrypoint.sh
 
 volumes:
