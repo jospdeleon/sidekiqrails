@@ -20,13 +20,11 @@ RUN apk add --update --no-cache \
       libgcrypt-dev \
       make \
       netcat-openbsd \
-      nodejs \
       openssl \
       pkgconfig \
       postgresql-dev \
       python3 \
-      tzdata \
-      yarn 
+      tzdata
 RUN gem install bundler -v 2.4.10
 
 WORKDIR /app
