@@ -16,8 +16,6 @@ services:
     env_file: .env
     environment:
       RAILS_ENV: development
-    labels:
-      kompose.service.type: LoadBalancer
 
   database:
     image: postgres:15.4
