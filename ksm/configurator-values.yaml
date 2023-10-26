@@ -6,9 +6,9 @@ fullnameOverride: ""
 # -- Name of the Kubernetes cluster monitored. Can be configured also with `global.cluster`.
 # Note it will be set as an external label in prometheus configuration, it will have precedence over `config.common.external_labels.cluster_name`
 # and `customAttributes.cluster_name``.
-cluster: colima
+cluster: YOUR_CLUSTER
 # -- This set this license key to use. Can be configured also with `global.licenseKey`
-licenseKey: ***REMOVED***
+licenseKey: YOUR_LICENSE_KEY
 # -- In case you don't want to have the license key in you values, this allows you to point to a user created secret to get the key from there. Can be configured also with `global.customSecretName`
 customSecretName: ""
 # -- In case you don't want to have the license key in you values, this allows you to point to which secret key is the license key located. Can be configured also with `global.customSecretLicenseKey`
