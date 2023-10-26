@@ -26,9 +26,16 @@ spec:
         io.kompose.service: exporter
     spec:
       containers:
-        - env:
+        - envFrom:
+            - configMapRef:
+                name: app-config
+          env:
+            - name: REDIS_HOST
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
             - name: REDIS_URL
-              value: redis://C02XD2USJG5M:6379/0
+              value: redis://$(REDIS_HOST):$(REDIS_PORT)/0
           image: strech/sidekiq-prometheus-exporter
           name: exporter
           ports:

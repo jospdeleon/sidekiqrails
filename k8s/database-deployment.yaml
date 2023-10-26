@@ -27,11 +27,14 @@ spec:
         io.kompose.service: database
     spec:
       containers:
-        - env:
-            - name: POSTGRES_PASSWORD
-              value: shark
-          image: postgres:15.4
+        - image: postgres:15.4
           name: database
+          envFrom:
+            - configMapRef:
+                name: app-config
+          env:
+            - name: POSTGRES_PASSWORD
+              value: "$(DATABASE_PASSWORD)"
           ports:
             - containerPort: 5432
               hostPort: 5432

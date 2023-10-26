@@ -29,21 +29,18 @@ spec:
       containers:
         - command:
             - ./entrypoints/sidekiq-entrypoint.sh
+          envFrom:
+            - configMapRef:
+                name: app-config
           env:
             - name: DATABASE_HOST
-              value: C02XD2USJG5M
-            - name: DATABASE_NAME
-              value: sidekiqrails_development
-            - name: DATABASE_PASSWORD
-              value: shark
-            - name: DATABASE_USER
-              value: postgres
-            - name: RAILS_ENV
-              value: development
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
             - name: REDIS_HOST
-              value: C02XD2USJG5M
-            - name: REDIS_PORT
-              value: "6379"
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
           image: sidekiqrails_sidekiq:latest
           imagePullPolicy: IfNotPresent
           name: sidekiq

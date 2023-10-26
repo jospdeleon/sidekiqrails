@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  RAILS_ENV: development
+  # RAILS_LOG_TO_STDOUT: "true"
+  # RAILS_SERVE_STATIC_FILES: "true"
+  # SECRET_KEY_BASE: "top-secret"
+  DATABASE_NAME: "sidekiqrails_development"
+  DATABASE_USER: "postgres"
+  DATABASE_PASSWORD: “secret” ##
+  DATABASE_PORT: "5432"
+  REDIS_PORT: "6379"
